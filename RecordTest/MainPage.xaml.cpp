@@ -28,17 +28,24 @@ MainPage::MainPage()
 
 void RecordTest::MainPage::start(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
 {
-	ToggleButton^ b = safe_cast<ToggleButton^>(sender);
-	b->Content = "STOP";
+	// Put the UI into "recording" state.
+	_startstopBtn->IsChecked = true;
+	_startstopBtn->Content = "STOP";
 
 	// TODO: 1. Start recording using the RealSense API
-	// TODO: 2. Start moving `_datdot`, probably using the "Storyboarded Animation" stuff.
+
+	// 2. Start moving `_datdot` using the "Storyboarded Animation" stuff.
+	_storyboard->Begin();
 }
 
 void RecordTest::MainPage::stop(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
 {
-	ToggleButton^ b = safe_cast<ToggleButton^>(sender);
-	b->Content = "START";
+	// Put the UI into "not recording" state.
+	_startstopBtn->IsChecked = false;
+	_startstopBtn->Content = "START";
+
 	// TODO: 1. Stop recording and save the file.
-	// TODO: 2. Stop animating `_datdot` and place it back to its initial position.
+
+	// 2. Stop animating `_datdot` and place it back to its initial position.
+	_storyboard->Stop();
 }

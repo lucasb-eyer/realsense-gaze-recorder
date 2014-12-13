@@ -8,8 +8,21 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <Ellipse x:Name="_datdot" Fill="#3F00FF00" HorizontalAlignment="Left" Height="20" Margin="10,10,0,0" VerticalAlignment="Top" Width="20" IsDoubleTapEnabled="False" IsHoldingEnabled="False" IsRightTapEnabled="False" IsTapEnabled="False" ManipulationMode="None"/>
+        <Ellipse x:Name="_datdot" Fill="#3F00FF00" HorizontalAlignment="Left" Height="20" Margin="10,10,0,0" VerticalAlignment="Top" Width="20" IsDoubleTapEnabled="False" IsHoldingEnabled="False" IsRightTapEnabled="False" IsTapEnabled="False" ManipulationMode="None" RenderTransformOrigin="0.5,0.5">
+            <Ellipse.RenderTransform>
+                <CompositeTransform TranslateX="0" TranslateY="0"/>
+            </Ellipse.RenderTransform>
+        </Ellipse>
         <ToggleButton x:Name="_startstopBtn" Content="START" HorizontalAlignment="Center" VerticalAlignment="Center" Checked="start" Background="#3FFF0000" Padding="100,50" FontSize="48" Unchecked="stop"/>
 
     </Grid>
+
+    <Page.Resources>
+        <Storyboard x:Name="_storyboard" Completed="stop">
+            <DoubleAnimation
+              Storyboard.TargetName="_datdot"
+              Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateX)"
+              From="0" To="200" Duration="0:0:2"/>
+        </Storyboard>
+    </Page.Resources>
 </Page>
