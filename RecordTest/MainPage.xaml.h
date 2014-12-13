@@ -17,5 +17,8 @@ namespace RecordTest
 	public:
 		MainPage();
 
+	private:
+		void start(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e);
+		void stop(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e);
 	};
 }
