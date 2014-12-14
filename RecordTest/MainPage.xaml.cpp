@@ -22,8 +22,19 @@ using namespace Windows::UI::Xaml::Navigation;
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
 MainPage::MainPage()
+	: _senseManager(PXCSenseManager::CreateInstance())
 {
 	InitializeComponent();
+
+	if (!_senseManager)
+		throw ref new FailureException("Unable to create the Intel RealSense Manager (PXCSenseManager)");
+}
+
+MainPage::~MainPage()
+{
+	// Will never be null since we throw in the constructor if it fails.
+	// Also doesn't need to be deleted according to the SDK.
+	_senseManager->Release();
 }
 
 void RecordTest::MainPage::start(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)

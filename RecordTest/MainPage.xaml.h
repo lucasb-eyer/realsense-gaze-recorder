@@ -7,6 +7,8 @@
 
 #include "MainPage.g.h"
 
+#include "pxcsensemanager.h"
+
 namespace RecordTest
 {
 	/// <summary>
@@ -16,9 +18,12 @@ namespace RecordTest
 	{
 	public:
 		MainPage();
+		virtual ~MainPage();
 
 	private:
 		void start(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e);
 		void stop(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e);
+
+		PXCSenseManager* _senseManager;
 	};
 }
